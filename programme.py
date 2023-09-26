@@ -12,20 +12,26 @@ def draw_square(taille):
     left(90)
     end_fill()
     
+def swap_color(num_ligne, num_colone):
+    if (num_ligne + num_colone) % 2 == 0:
+        color("black")
+    else:
+        color("white")
+
+
+def draw_checkboard(taille):
+    for num_ligne in range(8):
+        for num_colone in range(8):
+            swap_color(num_ligne, num_colone)
+            up()
+            offset_colone = (num_ligne - 4) * taille
+            goto(offset_colone, num_colone * taille - taille * 4)
+            down()
+            draw_square(taille)
     
+
 hideturtle()
 taille = 50
 speed(0)
-for b in range(8):
-    for c in range(8):
-        if (b + c) % 2 == 0:
-            color("black")
-        else:
-            color("white")
-        up()
-        d = (b - 4) * taille
-        goto(d, c * taille - taille * 4)
-        down()
-        draw_square(taille)
-        
 
+draw_checkboard(taille)
